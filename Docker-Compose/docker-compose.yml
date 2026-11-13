@@ -1,10 +1,9 @@
-
-
 services: #All the containers are called services, we have 2 here: web app(Flask) container and db container
   web: #service1: Flask App
     build: . #don’t pull a ready-made image. Build one from the Dockerfile in the current folder (.)
+    # image: 078601607894.dkr.ecr.us-west-2.amazonaws.com/fetu/flask:latest
     ports:
-      - "5002:5002" #HOST:CONTAINER
+      - "6666:5002" #HOST:CONTAINER
     depends_on:
       - mysql #start the db container before web. This only controls start order. It does not wait for MySQL to be ready to accept connections
 

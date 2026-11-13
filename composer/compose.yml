@@ -1,0 +1,14 @@
+services: #All the containers are called services, we have 2 here: web app(Flask) container and db container
+  web: #service1: Flask App
+    # build: . #don’t pull a ready-made image. Build one from the Dockerfile in the current folder (.)
+    image: 078601607894.dkr.ecr.us-east-2.amazonaws.com/docker-compose/flask-app:latest
+    ports:
+      - "5002:5002" #HOST:CONTAINER
+    depends_on:
+      - mysql #start the db container before web. This only controls start order. It does not wait for MySQL to be ready to accept connections
+
+  mysql: #service 2: MySQL
+    image: mysql:8 #pull the official MySQL 8 image from Docker Hub. No Dockerfile needed.
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+
